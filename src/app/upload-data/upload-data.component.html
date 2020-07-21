@@ -1,31 +1,4 @@
 <div class="container main-container">
-    <!-- <mat-card>
-        <mat-card-title>
-            Upload Person data
-        </mat-card-title>
-        <mat-card-content>
-            <div class="row">
-                <div class="form-group col-md-6">
-                    <label>Person Name</label>
-                    <input class="form-control" [(ngModel)]="name" placeholder="Person Name" name="name">
-                </div>
-                <div class="col-md-6 form-group">
-                    <label style="display: block;">Choose JSON file</label>
-                    <input type="file" (change)="fileSelected($event)" accept="application/JSON">
-                </div>
-            </div>
-            
-            <div *ngIf="showSuccessAlert" style="margin-top:1rem;" class="alert alert-success" role="alert">
-                Person data successfully uploaded. Person ID is {{uploadedPersonId}}
-                <button (click)="showSuccessAlert=false;uploadedPersonId=null;" type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        </mat-card-content>
-        <mat-card-actions>
-            <button (click)="addPerson()" mat-raised-button color="primary">Submit</button>
-        </mat-card-actions>
-    </mat-card> -->
 
     <nb-card [nbSpinner]="dataLoading" nbSpinnerStatus="success">
         <nb-card-header>Upload person data</nb-card-header>
@@ -41,13 +14,7 @@
                     <button (click)="fileInput.click()" hero nbButton status="primary">Choose JSON file</button>
                 </div>
             </div>
-            
-            <!-- <div *ngIf="showSuccessAlert" style="margin-top:1rem;" class="alert alert-success" role="alert">
-                Person data successfully uploaded. Person ID is {{uploadedPersonId}}
-                <button (click)="showSuccessAlert=false;uploadedPersonId=null;" type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div> -->
+        
             <nb-alert *ngIf="showSuccessAlert" status="success" closable (close)="showSuccessAlert=false;">
                 Person data successfully uploaded. Person ID is {{uploadedPersonId}}
             </nb-alert>
@@ -62,19 +29,6 @@
 </div>
 
   <div class="container">
-      <!-- <mat-card>
-            <mat-card-title>Get total distance</mat-card-title>
-
-            <mat-card-content>
-                <div class="row">
-                    <div class="form-group col-md-6">
-                        <label>Person ID</label>
-                        <input class="form-control" name="id" placeholder="Person ID" [(ngModel)]="personId">
-                    </div>
-                </div>
-            </mat-card-content>
-
-      </mat-card> -->
 
       <nb-card [nbSpinner]="distanceLoading" nbSpinnerStatus="success">
             <nb-card-header>Get total distance</nb-card-header>

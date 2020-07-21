@@ -84,8 +84,6 @@ export class UploadDataComponent implements OnInit {
       }
     }catch(err){
       console.log(err);
-      // this.errMessage="Some error occured while uploading";
-      // this.show=true;
       this.toastrService.show("Some error occured", "Error", {status:"danger"});
     }
     this.dataLoading=false;
