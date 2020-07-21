@@ -92,6 +92,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -123,6 +124,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "sociopool-task"
+    }
+  },
+  "defaultProject": "sociopool-task",
+  "cli": {
+    "analytics": "23617cf8-14ba-4afd-bac2-5683b77de796"
+  }
 }

@@ -1,0 +1,126 @@
+<div class="container main-container">
+    <!-- <mat-card>
+        <mat-card-title>
+            Upload Person data
+        </mat-card-title>
+        <mat-card-content>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label>Person Name</label>
+                    <input class="form-control" [(ngModel)]="name" placeholder="Person Name" name="name">
+                </div>
+                <div class="col-md-6 form-group">
+                    <label style="display: block;">Choose JSON file</label>
+                    <input type="file" (change)="fileSelected($event)" accept="application/JSON">
+                </div>
+            </div>
+            
+            <div *ngIf="showSuccessAlert" style="margin-top:1rem;" class="alert alert-success" role="alert">
+                Person data successfully uploaded. Person ID is {{uploadedPersonId}}
+                <button (click)="showSuccessAlert=false;uploadedPersonId=null;" type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </mat-card-content>
+        <mat-card-actions>
+            <button (click)="addPerson()" mat-raised-button color="primary">Submit</button>
+        </mat-card-actions>
+    </mat-card> -->
+
+    <nb-card [nbSpinner]="dataLoading" nbSpinnerStatus="success">
+        <nb-card-header>Upload person data</nb-card-header>
+        <nb-card-body>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label>Person Name</label>
+                    <input nbInput fullWidth [(ngModel)]="name" placeholder="Person Name" name="name">
+                </div>
+                <div class="col-md-6 form-group">
+                    <label style="color: white;" [ngStyle]="fileName ? {'color':'black'} : {'color':'white'}" >{{fileName ? fileName : 'Choose JSON file'}}</label>
+                    <input type="file" #fileInput style="display: none;" (change)="fileSelected($event)" accept="application/JSON">
+                    <button (click)="fileInput.click()" hero nbButton status="primary">Choose JSON file</button>
+                </div>
+            </div>
+            
+            <!-- <div *ngIf="showSuccessAlert" style="margin-top:1rem;" class="alert alert-success" role="alert">
+                Person data successfully uploaded. Person ID is {{uploadedPersonId}}
+                <button (click)="showSuccessAlert=false;uploadedPersonId=null;" type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div> -->
+            <nb-alert *ngIf="showSuccessAlert" status="success" closable (close)="showSuccessAlert=false;">
+                Person data successfully uploaded. Person ID is {{uploadedPersonId}}
+            </nb-alert>
+        </nb-card-body>
+
+        <nb-card-footer>
+            <button (click)="addPerson()" hero nbButton status="success">Submit</button>
+        </nb-card-footer>
+
+    </nb-card>
+
+</div>
+
+  <div class="container">
+      <!-- <mat-card>
+            <mat-card-title>Get total distance</mat-card-title>
+
+            <mat-card-content>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label>Person ID</label>
+                        <input class="form-control" name="id" placeholder="Person ID" [(ngModel)]="personId">
+                    </div>
+                </div>
+            </mat-card-content>
+
+      </mat-card> -->
+
+      <nb-card [nbSpinner]="distanceLoading" nbSpinnerStatus="success">
+            <nb-card-header>Get total distance</nb-card-header>
+
+            <nb-card-body>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label>Person ID</label>
+                        <input nbInput fullWidth name="id" placeholder="Person ID" [(ngModel)]="personId">
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label>Pick a date range</label>
+                        <input nbInput [(ngModel)]="dateRange" fullWidth placeholder="Pick Date Range" [nbDatepicker]="formpicker">
+                        <nb-rangepicker #formpicker></nb-rangepicker>
+                    </div>
+
+                </div>
+            </nb-card-body>
+
+            <nb-card-footer>
+                <button (click)="getTotalDistance(dialog)" hero nbButton status="success">Get details</button>
+            </nb-card-footer>
+
+      </nb-card>
+      
+  </div>
+
+  <ng-template #dialog let-data let-ref="dialogRef">
+    <nb-card>
+      <nb-card-header>Person details</nb-card-header>
+      <nb-card-body>
+        <nb-list>
+            <nb-list-item>
+                <strong>Person ID:</strong> <span>{{data.person._id}}</span>
+            </nb-list-item>
+            <nb-list-item>
+                <strong>Person Name:</strong> <span>{{data.person.name}}</span>
+            </nb-list-item>
+            <nb-list-item>
+                <strong>Total Distance travelled:</strong> <span>{{data.distance}} km</span>
+            </nb-list-item>
+        </nb-list>
+      </nb-card-body>
+      <nb-card-footer>
+        <button nbButton (click)="ref.close()">Close Dialog</button>
+      </nb-card-footer>
+    </nb-card>
+  </ng-template>
