@@ -32,15 +32,34 @@ export class UploadDataComponent implements OnInit {
   }
 
   fileSelected(event){
-    this.fileName=event.target.files[0].name;
-    let reader=new FileReader();
-    reader.onload=(ev)=>{
-      
-      this.data=JSON.parse(ev.target.result as any);
-      console.log(this.data);
-    }
+    try{
+      this.fileName=event.target.files[0].name;
+      let reader=new FileReader();
+      reader.onload=(ev)=>{
+        
+        const data=JSON.parse(ev.target.result as any);
 
-    reader.readAsText(event.target.files[0]);
+        for(let i=0;i<data.length;i++){
+          const d=data[i];
+
+          if(d.distance && d.date && d.time){
+            
+
+          }else{
+            throw new Error("Invalid JSON schema");
+          }
+
+        }
+
+        this.data=JSON.parse(ev.target.result as any);
+
+        console.log(this.data);
+      }
+
+      reader.readAsText(event.target.files[0]);
+    }catch(err){
+      this.toastrService.show("Some error occured", "Error", {status:"danger"});
+    }
   }
 
   async getTotalDistance(dialog){
